@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KORBO — আপনার কাজ, আমরা করবো।</title>
+<meta name="description" content="Passport, certificate, attestation, TIN, trade license এবং অন্যান্য administrative কাজের জন্য verified online ও physical assistance।">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KORBO — আপনার কাজ, আমরা করবো।">
+<meta property="og:description" content="Passport, certificate, attestation, TIN, trade license এবং অন্যান্য administrative কাজের জন্য verified online ও physical assistance।">
+<meta name="theme-color" content="#0b3d2e">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#0b3d2e;--g2:#0f5a43;--e:#12a47a;--m:#e7f5ee;--m2:#f3faf6;--bg:#f6f8f7;--ink:#14201b;--mut:#5b6b64;--ln:#dfe8e3;--w:#fff;--amb:#b7791f;--r:24px;--sh:0 10px 30px -12px rgba(11,61,46,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Hind Siliguri',system-ui,sans-serif;color:var(--ink);background:var(--w);line-height:1.65;font-size:17px;overflow-x:hidden;-webkit-text-size-adjust:100%}
+h1,h2,h3{line-height:1.25;font-weight:700;color:var(--g)}
+.serif{font-family:Fraunces,Georgia,serif}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--e);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+section{padding:88px 0}
+.alt{background:var(--bg)}
+.sh{max-width:720px;margin-bottom:44px}.sh h2{font-size:clamp(26px,4vw,40px)}.sh p{color:var(--mut);margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:600;transition:.2s;white-space:nowrap}
+.bp{background:var(--g);color:#fff}.bp:hover{background:var(--e);transform:translateY(-1px)}
+.bs{border:1.5px solid var(--g);color:var(--g)}.bs:hover{background:var(--m)}
+.bw{background:#fff;color:var(--g)}.bw:hover{background:var(--m)}
+.bo{border:1.5px solid rgba(255,255,255,.5);color:#fff}.bo:hover{background:rgba(255,255,255,.1)}
+.card{background:#fff;border:1px solid var(--ln);border-radius:var(--r);padding:26px;box-shadow:var(--sh)}
+.ic{width:46px;height:46px;border-radius:14px;background:var(--m);display:grid;place-items:center;font-size:22px;flex:none}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 12px;border-radius:99px;background:var(--m);color:var(--g2)}
+.chip.w{background:#fdf3de;color:var(--amb)}.chip.n{background:#eef1ef;color:var(--mut)}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+/* nav */
+header{position:sticky;top:0;z-index:50;transition:.3s;background:#fff}
+header.sc{background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--ln)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;font-size:23px;color:var(--g);letter-spacing:.5px}
+.nl{display:flex;gap:26px;font-weight:500;font-size:16px}.nl a{padding:6px 2px;border-bottom:2px solid transparent}.nl a:hover{border-color:var(--e)}
+.nr{display:flex;align-items:center;gap:14px}
+.lang{display:flex;background:var(--bg);border-radius:99px;padding:3px;font-size:14px;font-weight:600}.lang button{padding:3px 12px;border-radius:99px;color:var(--mut)}.lang .on{background:var(--g);color:#fff}
+.lg{font-weight:600}
+.hb{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--ln);place-items:center}
+.mm{display:none}
+/* hero */
+.hero{padding:56px 0 80px;background:radial-gradient(900px 400px at 85% 0,var(--m) 0,transparent 70%)}
+.hg{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(32px,5vw,54px);letter-spacing:-.5px}
+.hero p.s{margin-top:20px;color:#33433c;font-size:18px;max-width:560px}
+.hero p.s b{display:block;margin-top:10px;color:var(--g)}
+.hc{margin-top:18px;font-weight:700;color:var(--e);font-size:19px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.tr{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:26px;font-size:15px;font-weight:600;color:var(--g2)}
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:30px;font-size:14px;font-weight:600}
+.flow span{background:#fff;border:1px solid var(--ln);border-radius:99px;padding:4px 12px}.flow i{color:var(--e);font-style:normal}
+.vis{position:relative;min-height:520px;display:grid;place-items:center}
+.phone{width:250px;background:var(--g);border-radius:40px;padding:12px;box-shadow:0 30px 60px -20px rgba(11,61,46,.5)}
+.scr{background:#fff;border-radius:30px;padding:16px 14px;min-height:430px}
+.person{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#d9a273,#8a5a38);display:grid;place-items:center;font-size:20px;flex:none}
+.mt{background:var(--m2);border:1px solid var(--ln);border-radius:14px;padding:10px 12px;margin-top:9px;font-size:13.5px;font-weight:600;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.fl{position:absolute;background:#fff;border:1px solid var(--ln);border-radius:16px;padding:10px 14px;box-shadow:var(--sh);font-size:13.5px;line-height:1.4;font-weight:600;animation:fy 6s ease-in-out infinite}
+.fl small{display:block;font-weight:500;color:var(--mut)}
+.f1{top:26px;left:0}.f2{top:140px;right:-6px;animation-delay:-2s}.f3{bottom:120px;left:-8px;animation-delay:-4s}.f4{bottom:26px;right:4px;animation-delay:-1s}.f5{top:-6px;right:34px;background:var(--g);color:#fff;border-color:var(--g)}.f5 small{color:#bfe6d6}
+@keyframes fy{50%{transform:translateY(-8px)}}
+/* pain */
+.path{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:34px}
+.path span{background:#fff;border:1px dashed #c9d6cf;border-radius:14px;padding:10px 18px;font-weight:600}.path i{color:#c0392b;font-style:normal}
+.pains{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.pains div{background:#fff;border:1px solid var(--ln);border-radius:18px;padding:18px;font-weight:600;font-size:15.5px}
+.pains div:before{content:"✕";display:block;color:#c0392b;font-size:13px;margin-bottom:6px}
+.sol{margin-top:34px;background:var(--g);color:#fff;border-radius:var(--r);padding:34px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.sol h3{color:#fff;font-size:26px}.sol p{color:#cfeade}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative}
+.steps:before{content:"";position:absolute;top:27px;left:12%;right:12%;border-top:2px dashed #b9d9cb}
+.st{position:relative;text-align:center}
+.st .n{width:56px;height:56px;border-radius:50%;background:var(--g);color:#fff;font-weight:700;display:grid;place-items:center;margin:0 auto 16px;font-size:18px;box-shadow:0 0 0 8px #fff}
+.st h3{font-size:19px}.st p{color:var(--mut);font-size:15.5px;margin-top:6px}
+/* split */
+.sp{padding:34px}.sp.dk{background:var(--g);border-color:var(--g);color:#d5ede2}.sp.dk h3{color:#fff}
+.sp ul{list-style:none;margin:20px 0 26px;display:grid;gap:10px}.sp li:before{content:"✓";color:var(--e);font-weight:700;margin-right:10px}
+.dis{margin-top:20px;font-size:14px;color:var(--mut);background:var(--m2);border:1px solid var(--ln);border-radius:14px;padding:12px 16px}
+/* services */
+.flt{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.flt button{padding:7px 18px;border-radius:99px;border:1px solid var(--ln);background:#fff;font-weight:600;font-size:15px}.flt button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.sv{display:flex;flex-direction:column;gap:10px;transition:.25s}.sv:hover{transform:translateY(-5px);border-color:var(--e)}
+.sv h3{font-size:19px}.sv p{color:var(--mut);font-size:15px;flex:1}
+.sv .btn{padding:9px 18px;font-size:15px;align-self:flex-start;background:var(--m);color:var(--g)}.sv:hover .btn{background:var(--g);color:#fff}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+/* experience */
+.xp{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+.ck{list-style:none;display:grid;gap:0}.ck li{display:flex;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--ln);font-weight:600}
+.dot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;flex:none;border:2px solid var(--ln);color:var(--mut)}.dot.d{background:var(--e);border-color:var(--e);color:#fff}.dot.a{border-color:var(--amb);color:var(--amb);background:#fdf3de}
+.fee{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--ln);font-size:15.5px;gap:10px}.fee b{white-space:nowrap}
+.note{font-size:13.5px;color:var(--mut);margin-top:12px}
+/* dashboard */
+.db{background:#fff;border:1px solid var(--ln);border-radius:28px;box-shadow:0 30px 60px -30px rgba(11,61,46,.35);overflow:hidden;display:grid;grid-template-columns:200px 1fr}
+.dsd{background:var(--g);color:#cfeade;padding:22px 16px;display:grid;gap:6px;align-content:start;font-size:15px}.dsd .logo{color:#fff;margin-bottom:14px;font-size:20px}.dsd div{padding:8px 12px;border-radius:10px}.dsd .on{background:rgba(255,255,255,.14);color:#fff}
+.dm{padding:26px;background:var(--bg)}
+.dh{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}.dh h3{font-size:22px}.dh p{color:var(--mut);font-size:15px}
+.dg{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}.dc{background:#fff;border:1px solid var(--ln);border-radius:18px;padding:18px}
+.dc h4{font-size:15px;color:var(--mut);margin-bottom:12px;font-weight:600}
+.pr{margin-bottom:14px}.pr div:first-child{display:flex;justify-content:space-between;font-weight:600;font-size:15px}
+.bar{height:9px;background:var(--m);border-radius:9px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--e);border-radius:9px;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.qs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:12.5px;text-align:center;font-weight:600}.qs div{background:var(--m2);border-radius:12px;padding:10px 4px}
+.act{font-size:14.5px;display:grid;gap:9px}.act div:before{content:"●";color:var(--e);margin-right:8px;font-size:10px}
+/* vault */
+.vt{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.fs{display:grid;gap:10px;margin-top:22px}.fs div{font-weight:600}.fs div:before{content:"✓";color:var(--e);margin-right:10px}
+.doc{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--ln)}.doc:last-child{border:0}.doc b{flex:1;font-size:16px}
+.doc small{display:flex;gap:6px}
+/* agents */
+.ag{display:flex;flex-direction:column;gap:12px}.ag .t{display:flex;gap:14px;align-items:center}.ag .av{width:56px;height:56px;font-size:26px}
+.ag h3{font-size:19px}.ag .m{display:flex;gap:6px;flex-wrap:wrap}.ag p{font-size:14.5px;color:var(--mut)}
+.vf{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}.vf div{background:var(--m);border-radius:16px;padding:14px 16px;font-weight:600;font-size:15px;color:var(--g2)}
+/* study */
+.dark{background:var(--g);color:#d5ede2}.dark h2{color:#fff}.dark .sh p{color:#b4d8c8}
+.cl{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:26px}
+.cl div{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600}.cl div:last-child{border:0}
+.biz{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}.biz span{background:#fff;border:1px solid var(--ln);padding:8px 18px;border-radius:99px;font-weight:600;font-size:15px}
+/* family */
+.fm{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.mem{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.mem span{background:var(--m);padding:8px 16px;border-radius:99px;font-weight:600;font-size:15px}
+.ft{display:flex;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--ln);font-weight:600;font-size:15.5px}.ft:last-child{border:0}
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(7,1fr);position:relative}
+.tl div{text-align:center;position:relative;font-size:14.5px;font-weight:600;padding:0 4px}
+.tl div:before{content:"";position:absolute;top:13px;left:-50%;width:100%;border-top:3px solid var(--e)}.tl div:first-child:before{display:none}.tl div.nx:before{border-top-color:var(--ln)}
+.tl .dot{margin:0 auto 10px;position:relative;z-index:1;background:#fff}.tl .d{background:var(--e)}.tl .a{box-shadow:0 0 0 6px #fdf3de}
+/* testi */
+.tq p{font-size:16.5px}.tq .nm{margin-top:16px;font-weight:700;color:var(--g)}.tq .nm small{display:block;font-weight:400;color:var(--mut)}.tq:before{content:"“";font-family:Fraunces,serif;font-size:56px;line-height:.6;color:var(--e);display:block;height:26px}
+/* faq */
+.fq{max-width:820px}.fi{border:1px solid var(--ln);border-radius:18px;margin-bottom:12px;background:#fff;overflow:hidden}
+.fi button{width:100%;text-align:left;padding:18px 22px;font-weight:600;display:flex;justify-content:space-between;gap:14px;font-size:17px}
+.fi button span{color:var(--e);font-size:22px;transition:.25s;line-height:1}.fi.o button span{transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .3s;color:var(--mut)}.fa p{padding:0 22px 20px}
+/* cta/footer */
+.fin{background:var(--g);color:#fff;text-align:center;padding:90px 0}.fin h2{color:#fff;font-size:clamp(28px,4.5vw,46px)}.fin p{color:#bfe6d6;margin:14px auto 28px;max-width:560px}.fin .cta{justify-content:center}
+footer{background:#0a2a20;color:#a9c7ba;padding:60px 0 30px;font-size:15px}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}.fg h4{color:#fff;margin-bottom:12px}.fg a{display:block;padding:3px 0}.fg a:hover{color:#fff}
+.fg .logo{color:#fff}.soc{display:flex;gap:10px;margin-top:16px}.soc a{width:38px;height:38px;border-radius:50%;border:1px solid #2c4d40;display:grid;place-items:center;font-weight:700;font-size:14px;padding:0}
+.cp{margin-top:36px;padding-top:20px;border-top:1px solid #1d4234;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:14px}
+/* modal */
+dialog{border:0;border-radius:28px;padding:30px;width:min(560px,calc(100vw - 28px));max-height:calc(100vh - 28px);margin:auto;box-shadow:0 40px 80px -20px rgba(0,0,0,.4);overflow:auto}
+dialog::backdrop{background:rgba(8,32,24,.55);backdrop-filter:blur(3px)}
+dialog[open]{animation:pop .25s ease}@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}}
+.x{position:absolute;right:16px;top:16px;width:38px;height:38px;border-radius:50%;background:var(--bg);font-size:20px}
+dialog h3{font-size:24px;margin-bottom:6px;padding-right:36px}dialog>p,.dp{color:var(--mut);margin-bottom:16px}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+.opts button{border:1.5px solid var(--ln);border-radius:14px;padding:12px;font-weight:600;text-align:left}.opts button.on{border-color:var(--e);background:var(--m);color:var(--g)}
+textarea,input{width:100%;font:inherit;border:1.5px solid var(--ln);border-radius:14px;padding:12px 14px;margin-bottom:14px;background:#fff}textarea{min-height:96px;resize:vertical}
+dialog .btn{width:100%}
+.ok{text-align:center;padding:10px 0}.ok .big{width:70px;height:70px;border-radius:50%;background:var(--e);color:#fff;font-size:34px;display:grid;place-items:center;margin:0 auto 14px}
+.hide{display:none!important}
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);background:var(--g);color:#fff;padding:11px 20px;border-radius:99px;opacity:0;pointer-events:none;transition:.3s;z-index:90;font-size:15px;max-width:90vw;text-align:center}.toast.on{opacity:1;transform:translate(-50%,0)}
+#top{position:fixed;right:18px;bottom:92px;width:46px;height:46px;border-radius:50%;background:var(--g);color:#fff;font-size:20px;z-index:40;opacity:0;pointer-events:none;transition:.3s;box-shadow:var(--sh)}#top.on{opacity:1;pointer-events:auto}
+.rv{opacity:0;transform:translateY(18px);transition:.7s}.rv.in{opacity:1;transform:none}
+.mb,.mc{display:none}
+@media(max-width:1020px){
+.nl,.lg{display:none}.hb{display:grid}.mm.open{display:grid;gap:4px;padding:10px 22px 18px;border-top:1px solid var(--ln);background:#fff}.mm a{padding:11px 4px;font-weight:600;border-bottom:1px solid var(--bg)}
+.hg,.xp,.vt,.fm{grid-template-columns:1fr}.g4,.g5{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}.pains{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr);row-gap:34px}.steps:before{display:none}.vf{grid-template-columns:repeat(2,1fr)}.fg{grid-template-columns:1fr 1fr}
+.db{grid-template-columns:1fr}.dsd{display:none}.tl{grid-template-columns:1fr;gap:0;padding-left:6px}.tl div{text-align:left;display:flex;gap:14px;align-items:center;padding:0 0 22px}.tl div:before{left:12px;top:26px;width:0;height:100%;border-top:0;border-left:3px solid var(--e)}.tl div.nx:before{border-left-color:var(--ln)}.tl .dot{margin:0}.tl div:last-child{padding-bottom:0}.tl div:last-child:before{display:none}.tl div:first-child:before{display:block}
+}
+@media(max-width:700px){
+body{font-size:16px;padding-bottom:128px}section{padding:56px 0}.wrap{padding:0 18px}
+.nr .lang,.nr .bp{display:none}
+.g2,.g3,.g4,.g5,.dg{grid-template-columns:1fr}.pains{grid-template-columns:1fr}
+.vis{min-height:480px;margin-top:10px}.f1{left:-4px}.f2{right:-4px}.f3{left:-4px}.f4{right:-4px}.fl{font-size:12.5px;padding:8px 11px}.phone{width:218px}.scr{min-height:380px}
+.steps{grid-template-columns:1fr}.st{display:flex;gap:16px;text-align:left}.st .n{margin:0;flex:none;box-shadow:none}
+.sv{flex-direction:row;flex-wrap:wrap;align-items:center}.sv p{flex-basis:calc(100% - 60px);margin-left:58px;margin-top:-6px}.sv h3{flex:1}.sv .btn{margin-left:58px}
+.qs{grid-template-columns:repeat(2,1fr)}.vf{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr}.fg>div:first-child{grid-column:1/-1}
+.opts{grid-template-columns:1fr}.dm{padding:16px}.sp{padding:24px}.cta .btn{flex:1}
+.mc{display:block;position:fixed;left:0;right:0;bottom:62px;padding:8px 14px;background:linear-gradient(transparent,#fff 40%);z-index:45}.mc .btn{width:100%;box-shadow:0 8px 24px -6px rgba(11,61,46,.5)}
+.mb{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--ln);z-index:46;padding:6px 0 max(6px,env(safe-area-inset-bottom))}
+.mb a,.mb button{display:grid;justify-items:center;font-size:11.5px;font-weight:600;color:var(--mut);gap:0;line-height:1.3;padding:3px 0}.mb span{font-size:19px}
+#top{bottom:136px}.toast{bottom:150px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body id="home">
+<header id="hd"><div class="wrap">
+<nav class="nav" aria-label="প্রধান নেভিগেশন">
+<a href="#home" class="logo" aria-label="KORBO হোম"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#0b3d2e"/><path d="M11 8v18M11 17l9-9M13.5 15l8.5 11" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="25" cy="9" r="2.6" fill="#12a47a"/></svg>KORBO</a>
+<div class="nl"><a href="#home">হোম</a><a href="#services">সার্ভিস</a><a href="#how">কীভাবে কাজ করে</a><a href="#about">আমাদের সম্পর্কে</a><a href="#faq">FAQ</a></div>
+<div class="nr"><div class="lang" role="group" aria-label="ভাষা"><button class="on" data-l="bn">বাংলা</button><button data-l="en">English</button></div><button class="lg" data-m="login">লগইন</button><button class="btn bp" data-task>কাজ শুরু করুন</button><button class="hb" id="hb" aria-label="মেনু খুলুন" aria-expanded="false" aria-controls="mm">☰</button></div>
+</nav>
+<div class="mm" id="mm"><a href="#home">হোম</a><a href="#services">সার্ভিস</a><a href="#how">কীভাবে কাজ করে</a><a href="#about">আমাদের সম্পর্কে</a><a href="#faq">FAQ</a><a href="#" data-m="login">লগইন</a><div class="lang" style="width:max-content;margin-top:8px"><button class="on" data-l="bn">বাংলা</button><button data-l="en">English</button></div></div>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap hg">
+<div>
+<h1>আপনার সময় কি অফিসের টেবিলের পেছনে নষ্ট হচ্ছে?</h1>
+<p class="s">Passport, Certificate, Attestation, TIN, Trade License বা অন্য administrative কাজ নিয়ে এক অফিস থেকে আরেক অফিসে দৌড়াতে হবে না।<br><br>কাজটা আপনি বলুন।<br><br>বাকিটা KORBO-র verified assistance-এর মাধ্যমে গুছিয়ে নিন।</p>
+<p class="hc">KORBO — আপনার কাজ, আমরা করবো।</p>
+<div class="cta"><button class="btn bp" data-task>কাজ শুরু করুন</button><a class="btn bs" href="#how">কীভাবে কাজ করে?</a></div>
+<div class="tr"><span>✓ Verified Assistance</span><span>✓ Secure Documents</span><span>✓ Transparent Pricing</span></div>
+<div class="flow" aria-label="প্রক্রিয়া"><span>Customer</span><i>›</i><span>Task</span><i>›</i><span>Verified Assistant</span><i>›</i><span>Progress Tracking</span><i>›</i><span>Completed</span></div>
+</div>
+<div class="vis" aria-label="KORBO অ্যাপ প্রিভিউ">
+<div class="phone"><div class="scr">
+<div class="person"><div class="av" aria-hidden="true">🧑🏽</div><div><b>মেহের</b><br><small style="color:var(--mut)">আমার কাজ</small></div></div>
+<div class="mt">Passport Renewal <span class="chip">65%</span></div>
+<div class="bar"><i data-w="65"></i></div>
+<div class="mt">Certificate Correction <span class="chip w">40%</span></div>
+<div class="bar"><i data-w="40"></i></div>
+<div class="mt">Attestation <span class="chip">Done</span></div>
+<div class="bar"><i data-w="100"></i></div>
+<div class="mt" style="background:var(--g);color:#fff;border:0">💬 Agent: কাগজপত্র জমা হয়েছে</div>
+</div></div>
+<div class="fl f1">Passport Renewal<small>✓ Documents Verified</small></div>
+<div class="fl f2">Certificate Correction<small>⏳ Waiting for Authority</small></div>
+<div class="fl f3">Attestation<small>✓ Completed</small></div>
+<div class="fl f4">Trade License<small>⏳ In Progress</small></div>
+<div class="fl f5">✓ KORBO Verified<small>Professional Assistance</small></div>
+</div>
+</div></section>
+
+<section class="alt" id="pain"><div class="wrap rv">
+<div class="sh"><h2>একটা কাজের জন্য পুরো দিন নষ্ট করবেন কেন?</h2></div>
+<div class="path" aria-label="প্রচলিত প্রক্রিয়া"><span>বাসা</span><i>↓</i><span>অফিস</span><i>↓</i><span>লাইন</span><i>↓</i><span>আরেক অফিস</span><i>↓</i><span>ফাইল</span><i>↓</i><span>আবার অপেক্ষা</span></div>
+<div class="pains"><div>কোথায় যেতে হবে বুঝতে পারছি না</div><div>কোন document লাগবে?</div><div>এক অফিস থেকে আরেক অফিসে যেতে হচ্ছে</div><div>একটা কাজের জন্য ছুটি নিতে হচ্ছে</div><div>Follow-up কে করবে?</div></div>
+<div class="sol"><div><h3>KORBO</h3><p>এই দৌড়ঝাঁপটা একটু সহজ করে দিই।</p></div><button class="btn bw" data-task>কাজ শুরু করুন</button></div>
+</div></section>
+
+<section id="how"><div class="wrap rv">
+<div class="sh"><h2>কীভাবে KORBO কাজ করে?</h2></div>
+<div class="steps">
+<div class="st"><div class="n">01</div><div><h3>কাজ বলুন</h3><p>আপনার কী কাজ দরকার সেটা জানান।</p></div></div>
+<div class="st"><div class="n">02</div><div><h3>ডকুমেন্ট দিন</h3><p>প্রয়োজনীয় document নিরাপদে upload করুন।</p></div></div>
+<div class="st"><div class="n">03</div><div><h3>Verified Assistance পান</h3><p>আপনার কাজ অনুযায়ী verified person-এর assistance নিন।</p></div></div>
+<div class="st"><div class="n">04</div><div><h3>Track করুন</h3><p>Task কোথায় আছে সেটা real-time progress-এ দেখুন।</p></div></div>
+</div></div></section>
+
+<section class="alt"><div class="wrap rv">
+<div class="g2">
+<div class="card sp"><span class="chip">ONLINE ASSISTANCE</span><h3 style="margin-top:14px;font-size:26px">ঘরে বসেই গুছিয়ে নিন</h3><ul><li>Form assistance</li><li>Document checklist</li><li>Application preparation</li><li>Appointment coordination</li><li>Status guidance</li><li>Document organization</li></ul><button class="btn bp" data-task="Online">Online Help নিন</button></div>
+<div class="card sp dk"><span class="chip">PHYSICAL ASSISTANCE</span><h3 style="margin-top:14px;font-size:26px">যেখানে যেতেই হবে, সেখানে সহায়তা</h3><ul><li>Office visit</li><li>Document submission</li><li>Collection</li><li>Follow-up</li><li>Appointment assistance</li><li>Physical paperwork</li></ul><button class="btn bw" data-task="Physical">Physical Help নিন</button></div>
+</div>
+<p class="dis">Physical assistance is provided only where legally permitted and does not guarantee approval by any authority.</p>
+</div></section>
+
+<section id="services"><div class="wrap">
+<div class="sh rv"><h2>যেসব কাজ KORBO-তে করতে পারবেন</h2></div>
+<div class="flt" id="flt" role="group" aria-label="সার্ভিস ফিল্টার"></div>
+<div class="g5" id="svg"></div>
+</div></section>
+
+<section class="alt"><div class="wrap xp rv">
+<div class="card"><span class="chip">উদাহরণ টাস্ক</span><h3 style="font-size:26px;margin:12px 0 6px">Passport Renewal</h3><p class="note" style="margin:0 0 8px">Estimated Timeline: ১০–১৫ কর্মদিবস (অফিসের সময়সূচির উপর নির্ভরশীল)</p>
+<ul class="ck"><li><span class="dot d">✓</span>Requirement Check</li><li><span class="dot d">✓</span>Documents Verified</li><li><span class="dot d">✓</span>Application Prepared</li><li><span class="dot d">✓</span>Appointment Scheduled</li><li><span class="dot a">⏳</span>Office Visit <span class="chip w" style="margin-left:auto">চলমান</span></li><li><span class="dot">○</span>Completion</li></ul></div>
+<div class="card"><h3 style="font-size:22px;margin-bottom:6px">খরচ আলাদা ও স্পষ্ট</h3>
+<div class="fee"><span>Official Fee <small style="color:var(--mut)">(সরকারি ফি — সরাসরি কর্তৃপক্ষকে প্রদেয়)</small></span><b>কর্তৃপক্ষ নির্ধারিত</b></div>
+<div class="fee"><span>KORBO Service Fee</span><b>৳ ৫০০</b></div>
+<div class="fee"><span>Agent Assistance Fee</span><b>৳ ৮০০</b></div>
+<p class="note">KORBO সরকারি ফি সংগ্রহ করে না। সরকারি ফি আপনি অফিসিয়াল চ্যানেলে সরাসরি পরিশোধ করেন। এখানে দেখানো ফি শুধু উদাহরণ।</p></div>
+</div></section>
+
+<section id="dashboard"><div class="wrap rv">
+<div class="sh"><h2>সব কাজ, এক ড্যাশবোর্ডে</h2></div>
+<div class="db" aria-label="ড্যাশবোর্ড প্রিভিউ">
+<div class="dsd"><div class="logo">KORBO</div><div class="on">Home</div><div>My Tasks</div><div>Documents</div><div>My Family</div><div>Profile</div></div>
+<div class="dm">
+<div class="dh"><div><h3>Good morning, Meher 👋</h3><p>What do you need to get done today?</p></div><button class="btn bp" data-task>+ New Task</button></div>
+<div class="dg"><div class="dc"><h4>Active Tasks</h4>
+<div class="pr"><div><span>Passport Renewal</span><span>65% complete</span></div><div class="bar"><i data-w="65"></i></div></div>
+<div class="pr"><div><span>Certificate Correction</span><span>40% complete</span></div><div class="bar"><i data-w="40"></i></div></div>
+<h4 style="margin-top:20px">Quick Services</h4><div class="qs"><div>🛂<br>Passport</div><div>🎓<br>Certificate</div><div>📑<br>Attestation</div><div>🏪<br>Trade License</div></div></div>
+<div style="display:grid;gap:16px"><div class="dc"><h4>Upcoming</h4><b>Passport Appointment</b><p style="color:var(--mut);font-size:15px">12 October · 10:30 AM</p></div>
+<div class="dc"><h4>Recent Activity</h4><div class="act"><div>Agent assigned</div><div>Documents verified</div><div>Application submitted</div></div></div></div></div>
+</div></div>
+</div></section>
+
+<section class="alt" id="security"><div class="wrap vt rv">
+<div><h2 style="font-size:clamp(26px,4vw,40px)">আপনার documents, আপনার control।</h2><p style="color:var(--mut);margin-top:12px">প্রতিটি document আপনার private vault-এ থাকে। কোন task-এর জন্য কোন document কে দেখতে পারবে, সেটা আপনি ঠিক করেন।</p>
+<div class="fs"><div>Verified agents</div><div>Secure document access</div><div>Task-based permissions</div><div>Activity history</div><div>Transparent pricing</div></div></div>
+<div class="card"><h4 style="margin-bottom:6px">🔒 Document Vault</h4><div id="docs"></div><p class="note">Agent শুধু সেই task-এর জন্য আপনার অনুমোদিত document-ই দেখতে পারে। সব document-এ স্বয়ংক্রিয় access নেই।</p></div>
+</div></section>
+
+<section><div class="wrap rv">
+<div class="sh"><h2>যে মানুষ আপনার কাজটি করবে, তাকে আপনি চিনবেন।</h2></div>
+<div class="g3" id="ags"></div>
+<div class="vf"><div>✓ Identity Verified</div><div>✓ Phone Verified</div><div>✓ Service Verified</div><div>✓ Performance Monitored</div></div>
+</div></section>
+
+<section class="dark"><div class="wrap vt rv">
+<div><h2 style="font-size:clamp(26px,4vw,40px)">বিদেশে পড়তে যাচ্ছেন? Document-এর দৌড়ঝাঁপ KORBO-কে দিন।</h2><div style="margin-top:26px"><button class="btn bw" data-task="Study Abroad">Study Abroad Assistance নিন</button></div></div>
+<div class="cl"><div>Academic Certificate <span>✓</span></div><div>Transcript <span>✓</span></div><div>Passport <span>✓</span></div><div>Police Clearance <span>⏳</span></div><div>Attestation <span>○</span></div><div>Legalization <span>○</span></div></div>
+</div></section>
+
+<section><div class="wrap rv">
+<div class="sh" style="margin:0"><h2>আপনার Business চালান। Paperwork KORBO-কে দিন।</h2></div>
+<div class="biz"><span>Trade License</span><span>Renewal</span><span>Business Documents</span><span>Vendor Documentation</span><span>Tax-related paperwork</span><span>Document Collection</span></div>
+<button class="btn bp" data-task="Trade License">Business Assistance নিন</button>
+</div></section>
+
+<section class="alt" id="about"><div class="wrap rv">
+<div class="sh"><h2>কেন KORBO?</h2><p>KORBO একটি স্বাধীন assistance platform। আমরা সরকারি প্রতিষ্ঠান নই।</p></div>
+<div class="g3" id="why"></div>
+</div></section>
+
+<section><div class="wrap fm rv">
+<div><h2 style="font-size:clamp(26px,4vw,40px)">নিজের কাজের পাশাপাশি পরিবারের কাজও manage করুন।</h2></div>
+<div class="card"><h4 style="margin-bottom:12px">My Family</h4><div class="mem"><span>Father</span><span>Mother</span><span>Spouse</span><span>Child</span></div>
+<div class="ft"><span>Mother — Passport Renewal</span><span class="chip w">চলমান</span></div><div class="ft"><span>Father — Birth Certificate Correction</span><span class="chip n">শুরু হয়নি</span></div><div class="ft"><span>Brother — Certificate Collection</span><span class="chip">সম্পন্ন</span></div></div>
+</div></section>
+
+<section class="alt"><div class="wrap rv">
+<div class="sh"><h2>প্রতিটি ধাপ আপনি দেখতে পাবেন</h2></div>
+<div class="tl"><div><span class="dot d">✓</span>Task Created</div><div><span class="dot d">✓</span>Documents Uploaded</div><div><span class="dot d">✓</span>Documents Verified</div><div><span class="dot d">✓</span>Agent Assigned</div><div><span class="dot a">⏳</span>Application Submitted</div><div class="nx"><span class="dot">○</span>Follow-up</div><div class="nx"><span class="dot">○</span>Completed</div></div>
+</div></section>
+
+<section><div class="wrap rv">
+<div class="sh"><h2>যাঁরা KORBO-তে কাজ দিয়েছেন</h2></div>
+<div class="g2" id="ts"></div>
+</div></section>
+
+<section class="alt" id="faq"><div class="wrap fq rv">
+<div class="sh"><h2>সাধারণ প্রশ্ন</h2></div><div id="fqs"></div>
+</div></section>
+
+<section class="fin"><div class="wrap rv"><h2>আপনার সময়টা নিজের জন্য রাখুন।</h2><p>যে administrative কাজগুলো করতে গিয়ে আপনার সময় নষ্ট হয়, সেগুলো KORBO-তে দিন।</p><div class="cta"><button class="btn bw" data-task>কাজ শুরু করুন</button><a class="btn bo" href="#services">সার্ভিস দেখুন</a></div></div></section>
+</main>
+
+<footer><div class="wrap"><div class="fg">
+<div><div class="logo">KORBO</div><p style="margin-top:10px">আপনার কাজ, আমরা করবো।</p><p style="margin-top:8px;font-size:13.5px">KORBO একটি স্বাধীন assistance platform, সরকারি প্রতিষ্ঠান নয়।</p><div class="soc"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="YouTube">▶</a></div></div>
+<div><h4>সার্ভিস</h4><a href="#services">Passport</a><a href="#services">Certificate</a><a href="#services">Attestation</a><a href="#services">TIN</a><a href="#services">Trade License</a><a href="#services">Study Abroad</a></div>
+<div><h4>কোম্পানি</h4><a href="#about">আমাদের সম্পর্কে</a><a href="#how">কীভাবে কাজ করে</a><a href="#" data-info="Become an Agent">Become an Agent</a><a href="#" data-info="Business">Business</a></div>
+<div><h4>সাহায্য</h4><a href="#faq">FAQ</a><a href="#" data-info="Contact">Contact</a><a href="#" data-info="Terms">Terms</a><a href="#" data-info="Privacy">Privacy</a><a href="#" data-info="Refund Policy">Refund Policy</a></div>
+</div><div class="cp"><span>© 2026 KORBO. All rights reserved.</span><span>Made in Bangladesh 🇧🇩</span></div></div></footer>
+
+<button id="top" aria-label="উপরে যান">↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="mc"><button class="btn bp" data-task>কাজ শুরু করুন</button></div>
+<nav class="mb" aria-label="মোবাইল নেভিগেশন"><a href="#home"><span>🏠</span>হোম</a><a href="#services"><span>🧾</span>সার্ভিস</a><a href="#dashboard"><span>✅</span>আমার কাজ</a><a href="#security"><span>📁</span>ডকুমেন্ট</a><button data-m="login"><span>👤</span>প্রোফাইল</button></nav>
+
+<dialog id="task" aria-labelledby="tt"><button class="x" data-close aria-label="বন্ধ করুন">×</button>
+<div id="tf"><h3 id="tt">আপনার কী কাজ?</h3><p class="dp" id="tmode">একটি অপশন বেছে নিন।</p>
+<div class="opts" id="opts"></div>
+<label for="tx" style="font-weight:600;display:block;margin-bottom:6px">নিজের ভাষায় লিখুন</label>
+<textarea id="tx" placeholder="যেমন: আমার SSC certificate-এ নাম ভুল এসেছে..."></textarea>
+<button class="btn bp" id="nx">পরবর্তী ধাপে যান</button></div>
+<div class="ok hide" id="tok"><div class="big">✓</div><h3 style="padding:0">ধন্যবাদ! আপনার অনুরোধ পেয়েছি।</h3><p class="dp" id="tsum"></p><p class="note">এটি একটি frontend prototype। বাস্তবে এই ধাপে আপনি document upload ও agent নির্বাচন করবেন।</p><button class="btn bp" data-close>ঠিক আছে</button></div></dialog>
+
+<dialog id="login" aria-labelledby="lt"><button class="x" data-close aria-label="বন্ধ করুন">×</button><h3 id="lt">লগইন করুন</h3><p class="dp">আপনার ফোন নম্বর দিন, আমরা OTP পাঠাব।</p>
+<form id="lf" novalidate><label for="ph" style="font-weight:600">মোবাইল নম্বর</label><input id="ph" type="tel" inputmode="numeric" placeholder="01XXXXXXXXX" autocomplete="tel" style="margin-top:6px"><p class="note hide" id="le" style="color:#c0392b;margin:-6px 0 12px">সঠিক ১১ সংখ্যার নম্বর দিন (যেমন 01712345678)।</p><button class="btn bp" type="submit">OTP পাঠান</button></form></dialog>
+
+<dialog id="sv" aria-labelledby="svt"><button class="x" data-close aria-label="বন্ধ করুন">×</button><div class="ic" id="svi" style="margin-bottom:12px"></div><h3 id="svt"></h3><p class="dp" id="svd"></p><ul class="ck" id="svl" style="margin-bottom:18px"></ul><button class="btn bp" id="svb">এই সার্ভিসে কাজ শুরু করুন</button></dialog>
+
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const SV=[["🛂","Passport & Travel","travel","নতুন ও renewal passport-এর জন্য ফর্ম, appointment ও follow-up সহায়তা।",["আবেদনের requirement check","Document checklist","Appointment coordination"]],
+["🎓","Academic Documents","edu","Certificate সংশোধন ও সংগ্রহের সহায়তা।",["ভুল শনাক্ত ও আবেদন প্রস্তুতি","Board/University submission","Collection ও follow-up"]],
+["📑","Attestation & Legalization","edu","Attestation ও legalization-এর ধাপগুলো সমন্বয়।",["কোন অফিসে কী লাগবে তার তালিকা","Document প্রস্তুতি","Submission ও collection"]],
+["👶","Birth & Civil Documents","civil","জন্মনিবন্ধন ও নাগরিক কাগজপত্রে সহায়তা।",["Requirement check","আবেদন প্রস্তুতি","সংশোধন follow-up"]],
+["🧾","TIN & Tax","biz","TIN-সংক্রান্ত আবেদন ও কাগজ গুছিয়ে নেওয়া।",["Document checklist","ফর্ম পূরণে সহায়তা","Status guidance"]],
+["🏪","Trade License","biz","নতুন ও renewal trade license-এর paperwork।",["প্রয়োজনীয় কাগজের তালিকা","আবেদন প্রস্তুতি","Office submission ও follow-up"]],
+["🛡️","Police Clearance","civil","Police clearance-সংক্রান্ত আবেদনে সহায়তা।",["Requirement check","আবেদন প্রস্তুতি","Status guidance"]],
+["✈️","Study Abroad","travel","বিদেশে পড়ার জন্য document প্রস্তুতি ও সমন্বয়।",["Checklist তৈরি","Attestation সমন্বয়","একসাথে সব document গোছানো"]],
+["💼","Business Documents","biz","Vendor ও কোম্পানির নানা paperwork।",["Document সংগঠন","ফর্ম প্রস্তুতি","Submission সহায়তা"]],
+["📦","Document Collection","civil","যেকোনো অফিস থেকে document সংগ্রহ।",["Collection ব্যবস্থা","Status update","নিরাপদ হস্তান্তর"]]];
+const CATS=[["all","সব"],["travel","Travel"],["edu","Academic"],["civil","Civil"],["biz","Business"]];
+const svg=$("#svg"),flt=$("#flt");
+flt.innerHTML=CATS.map((c,i)=>`<button data-c="${c[0]}" class="${i?'':'on'}">${c[1]}</button>`).join("");
+svg.innerHTML=SV.map((s,i)=>`<article class="card sv" data-cat="${s[2]}"><div class="ic" aria-hidden="true">${s[0]}</div><h3>${s[1]}</h3><p>${s[3]}</p><button class="btn" data-sv="${i}">সহায়তা নিন</button></article>`).join("");
+flt.onclick=e=>{const b=e.target.closest("button");if(!b)return;$$("button",flt).forEach(x=>x.classList.toggle("on",x===b));$$(".sv",svg).forEach(c=>c.classList.toggle("hide",b.dataset.c!="all"&&c.dataset.cat!=b.dataset.c))};
+$("#docs").innerHTML=["NID.pdf","Passport.pdf","SSC Certificate.pdf","Birth Certificate.pdf"].map(d=>`<div class="doc"><div class="ic">📄</div><b>${d}</b><small><span class="chip">✓ Verified</span><span class="chip n">🔒 Private</span></small></div>`).join("");
+$("#ags").innerHTML=[["Rahim Ahmed","4.9","324","Passport · Certificate · Attestation","Dhaka"],["Farhana Akter","4.8","211","Trade License · TIN · Business","Dhaka"],["Tanvir Hasan","4.9","287","Certificate · Document Collection","Chattogram"]].map(a=>`<article class="card ag"><div class="t"><div class="av" aria-hidden="true">🧑🏽</div><div><h3>${a[0]}</h3><span class="chip">✓ KORBO Verified</span></div></div><div class="m"><span class="chip n">${a[1]} ★</span><span class="chip n">${a[2]} Tasks Completed</span></div><p><b>Services:</b> ${a[3]}<br><b>Areas:</b> ${a[4]}</p><button class="btn bs" data-info="${a[0]}-এর Profile">Profile দেখুন</button></article>`).join("");
+$("#why").innerHTML=[["✅","Verified Assistance","পরিচয় ও সার্ভিস যাচাই করা মানুষের সহায়তা।"],["💳","Transparent Pricing","সরকারি ফি, KORBO ফি ও agent ফি আলাদা।"],["🔐","Secure Documents","Task-ভিত্তিক permission, আপনার নিয়ন্ত্রণে।"],["📍","Task Tracking","প্রতিটি ধাপের অবস্থা দেখুন।"],["🤝","Online + Physical Help","যেখানে যা দরকার, সেই ধরনের সহায়তা।"],["💬","Customer Support","আটকে গেলে আমাদের টিম পাশে আছে।"]].map(w=>`<div class="card"><div class="ic" style="margin-bottom:14px">${w[0]}</div><h3 style="font-size:19px">${w[1]}</h3><p style="color:var(--mut);font-size:15.5px">${w[2]}</p></div>`).join("");
+$("#ts").innerHTML=[["একটা certificate correction-এর জন্য আমাকে কয়েকবার যেতে হতো। KORBO-তে task দেওয়ার পর পুরো processটা organized ছিল।","Nusrat Jahan","Dhaka"],["Trade license renew-এর কাগজ কী কী লাগবে, আগেই চেকলিস্ট পেয়েছি। অফিস ছেড়ে ছুটি নিতে হয়নি।","Mahmudul Hasan","Chattogram"],["ছেলের পড়াশোনার document attestation-এর পুরো অবস্থা ফোনেই দেখতে পেরেছি। খুব স্বস্তি পেয়েছি।","Shirin Sultana","Sylhet"],["প্রবাসে থেকে দেশের কাগজের কাজ নিয়ে চিন্তা ছিল। এখন প্রতিটি ধাপ আমি দেখতে পাই।","Arif Chowdhury","Khulna"]].map(t=>`<figure class="card tq"><p>${t[0]}</p><figcaption class="nm">${t[1]}<small>${t[2]}</small></figcaption></figure>`).join("");
+$("#fqs").innerHTML=[["KORBO কি সরকারি প্রতিষ্ঠান?","না। KORBO একটি স্বাধীন assistance platform। আমরা কোনো সরকারি সংস্থার অংশ নই।"],["কোন কোন কাজ KORBO করে?","Passport, certificate, attestation, TIN, trade license, police clearance, study-abroad document ও অন্যান্য administrative কাজে online ও physical সহায়তা।"],["Agent কি আমার documents দেখতে পারবে?","শুধু আপনার অনুমোদিত task-এর প্রয়োজনীয় document-ই দেখতে পারবে। সব document-এ স্বয়ংক্রিয় access নেই।"],["Physical assistance কীভাবে কাজ করে?","যেখানে আইনত অনুমোদিত, সেখানে verified agent অফিসে গিয়ে জমা, সংগ্রহ বা follow-up-এ সহায়তা করেন।"],["Payment কীভাবে হবে?","সরকারি ফি, KORBO service fee ও agent fee আলাদাভাবে দেখানো হবে। সরকারি ফি অফিসিয়াল চ্যানেলে সরাসরি পরিশোধ্য।"],["KORBO কি government approval guarantee করে?","না। অনুমোদন দেওয়ার সিদ্ধান্ত সংশ্লিষ্ট কর্তৃপক্ষের। আমরা প্রক্রিয়া গুছিয়ে নিতে সহায়তা করি।"],["Task কতদিন লাগে?","কাজের ধরন ও সংশ্লিষ্ট অফিসের সময়সূচির উপর নির্ভর করে। Task শুরুর আগে আনুমানিক সময় জানানো হয়।"],["যদি কাজ না হয় তাহলে কী হবে?","কারণ জানানো হবে এবং পরবর্তী করণীয় দেখানো হবে। Refund Policy অনুযায়ী প্রযোজ্য ফি সমন্বয় করা হবে।"]].map((q,i)=>`<div class="fi"><button aria-expanded="false" aria-controls="fa${i}" id="fb${i}">${q[0]}<span aria-hidden="true">+</span></button><div class="fa" id="fa${i}" role="region" aria-labelledby="fb${i}"><p>${q[1]}</p></div></div>`).join("");
+$("#fqs").onclick=e=>{const b=e.target.closest("button");if(!b)return;const f=b.parentNode,o=!f.classList.contains("o");$$(".fi").forEach(x=>{x.classList.remove("o");$("button",x).setAttribute("aria-expanded","false");$(".fa",x).style.maxHeight=0});if(o){f.classList.add("o");b.setAttribute("aria-expanded","true");const a=$(".fa",f);a.style.maxHeight=a.scrollHeight+"px"}};
+/* toast */
+let tt;const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2600)};
+/* modals */
+const open=d=>{const m=$("#"+d);if(!m.open)m.showModal()};
+$$("dialog").forEach(d=>{d.addEventListener("click",e=>{if(e.target===d||e.target.closest("[data-close]"))d.close()})});
+const TOP=["Passport","Certificate","Attestation","TIN","Trade License","Study Abroad","Document Collection","Other"];
+const opts=$("#opts");let pick="";
+function openTask(pre,mode){pick=pre||"";opts.innerHTML=TOP.map(o=>`<button type="button" class="${o==pick?'on':''}">${o}</button>`).join("");$("#tmode").textContent=mode?mode+" assistance — একটি অপশন বেছে নিন।":"একটি অপশন বেছে নিন।";$("#tf").classList.remove("hide");$("#tok").classList.add("hide");$("#tx").value="";open("task")}
+opts.onclick=e=>{const b=e.target.closest("button");if(!b)return;pick=b.textContent;$$("button",opts).forEach(x=>x.classList.toggle("on",x===b))};
+$("#nx").onclick=()=>{if(!pick&&!$("#tx").value.trim()){toast("একটি কাজ বেছে নিন বা নিজের ভাষায় লিখুন");return}$("#tsum").textContent="কাজ: "+(pick||"নিজের ভাষায় লেখা")+($("#tx").value.trim()?" — “"+$("#tx").value.trim().slice(0,80)+"”":"")+"। শীঘ্রই আমরা পরবর্তী ধাপ জানাব।";$("#tf").classList.add("hide");$("#tok").classList.remove("hide")};
+let cur=0;
+document.addEventListener("click",e=>{
+const t=e.target.closest("[data-task]");if(t){e.preventDefault();$("#mm").classList.remove("open");openTask("",t.dataset.task);return}
+const m=e.target.closest("[data-m]");if(m){e.preventDefault();$("#mm").classList.remove("open");open(m.dataset.m);return}
+const s=e.target.closest("[data-sv]");if(s){cur=+s.dataset.sv;const v=SV[cur];$("#svi").textContent=v[0];$("#svt").textContent=v[1];$("#svd").textContent=v[3];$("#svl").innerHTML=v[4].map(x=>`<li><span class="dot d">✓</span>${x}</li>`).join("");open("sv");return}
+const i=e.target.closest("[data-info]");if(i){e.preventDefault();toast(i.dataset.info+" — শীঘ্রই আসছে (prototype)");return}
+const l=e.target.closest("[data-l]");if(l){$$("[data-l]").forEach(x=>x.classList.toggle("on",x.dataset.l==l.dataset.l));if(l.dataset.l=="en")toast("English version coming soon — বাংলা কনটেন্ট দেখানো হচ্ছে");return}
+if(e.target.closest("#mm a")&&!e.target.closest("[data-m]")){$("#mm").classList.remove("open");$("#hb").setAttribute("aria-expanded","false")}
+if(e.target.closest("footer a[href='#']"))e.preventDefault();
+if(e.target.closest("a[href='#home']")){e.preventDefault();scrollTo({top:0,behavior:"smooth"})}
+});
+$("#svb").onclick=()=>{$("#sv").close();openTask(SV[cur][1].split(" ")[0])};
+$("#lf").onsubmit=e=>{e.preventDefault();const ok=/^01[3-9]\d{8}$/.test($("#ph").value.trim());$("#le").classList.toggle("hide",ok);if(ok){$("#login").close();toast("OTP পাঠানো হয়েছে (prototype)")}};
+$("#hb").onclick=()=>{const o=$("#mm").classList.toggle("open");$("#hb").setAttribute("aria-expanded",o);$("#hb").textContent=o?"✕":"☰"};
+/* scroll */
+const hd=$("#hd"),tp=$("#top");
+addEventListener("scroll",()=>{hd.classList.toggle("sc",scrollY>20);tp.classList.toggle("on",scrollY>600)},{passive:true});
+tp.onclick=()=>scrollTo({top:0,behavior:"smooth"});
+const io=new IntersectionObserver(en=>en.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");$$("[data-w]",x.target).forEach(b=>b.style.width=b.dataset.w+"%");io.unobserve(x.target)}}),{threshold:.12});
+$$(".rv").forEach(x=>io.observe(x));
+setTimeout(()=>$$(".hero [data-w]").forEach(b=>b.style.width=b.dataset.w+"%"),300);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+LIFE ADMIN AS A SERVICE
+Verified Human Assistance & Administrative Task Marketplace
+Web Application — Product & Work Module Blueprint
+Prepared: 05 October 2026
+1. Executive Concept
+?? ????????????? ??? ????? ???: ????? ?? ?????????, ??????????? ? ?????? ????? ???? ??? ??? administrative ??? ???? ???? ???? ??, ?? verified service agent-?? hire ??? ????? ???? ????? ?????? ???? ?????? ??? ???? information ?? checklist app ???; ??? ???? task-completion marketplace.
+Core promise: “????? ???? ?????? — paperwork ? administrative ????? ?????? verified person-?? ????”
+2. End-to-End Work Module
+1. Customer Registration ? Phone/Email OTP ? Profile
+2. Task Request ? Customer ????? ?????? ????? ???????? ?????
+3. Service Identification ? Platform ????????? service/category ???????? ????
+4. Requirement Engine ? Required documents, eligibility, steps ? expected timeline ??????
+5. Transparent Quote ? Government fee, platform/service fee ??? agent fee ????? ??????
+6. Customer Confirmation ? Customer scope, price ? terms approve ????
+7. Agent Matching ? location, service skill, availability, rating ? verification ???????? agent ????????
+8. Secure Document Sharing ? ???? task-?? ???? ??????????? document-?? limited access
+9. Task Execution ? agent checklist ???????? ??? ????
+10. Progress Tracking ? ??????? step-?? status ? timestamp
+11. Appointment / Submission / Collection ? ?????? ????????? ????????, agent physical assistance ????
+12. Proof & Completion ? receipt, acknowledgement ?? permitted proof upload
+13. Customer Confirmation ? customer task complete ????
+14. Payout & Review ? eligible agent payout + customer rating/review
+15. Audit & Dispute ? ?????? ??? evidence, logs ? support workflow
+3. Service Categories & Use Cases
+CategoryExamplesTypical AssistancePassport & Travel DocumentsNew passport, re-issue/renewal, appointment-related assistanceChecklist, form/application assistance, appointment, permitted submission/collection, trackingAcademic DocumentsCertificate correction, transcript/marksheet collection, duplicate/correction processesDocument checklist, board/university visits, submission/collection, follow-upAttestation & LegalizationAcademic/personal document attestation and legalization coordinationDocument preparation, appointment/office coordination, collectionBirth & Civil RecordsBirth registration, correction, reprint/status-related assistanceApplication support, document handling, permitted office assistanceTax & IdentificationTIN and related administrative paperworkApplication guidance, document preparation, submission assistance where permittedBusiness & GovernmentTrade license, renewal, business certificates, vendor paperworkDocument preparation, submission, renewal reminders, follow-upPolice / ClearancePolice clearance-related application assistanceChecklist, application support, appointment/submission assistance where permittedStudy AbroadDocuments needed for overseas study, attestation/legalization coordinationCollection, organization, attestation/legalization coordinationDriving & VehicleDriving licence-related administrative assistance, vehicle paperworkChecklist, appointment, submission/collection where permittedPersonal AdminUtility setup, school admission paperwork, document collection, moving-related paperworkResearch, appointments, document collection, physical errands4. Customer Workflows
+A. Simple Request
+Customer ? “???? passport renew ???? ???” ? Service matched ? Requirements ? Quote ? Hire ? Agent ? Tracking ? Completion
+B. Multi-Step Document Correction
+Problem identification ? Document verification ? Application/form assistance ? Relevant authority visit ? Submission ? Follow-up ? Correction outcome ? Proof
+C. Study-Abroad Documentation
+Goal selection ? Document checklist ? Collection ? Verification ? Attestation/legalization coordination ? Packaging ? Delivery/collection ? Completion
+5. User Roles
+Customer — Creates tasks, uploads documents, pays, approves access, tracks progress, confirms completion and reviews.
+Verified Service Agent — Accepts assigned tasks, performs permitted assistance, updates status, uploads proof and communicates through the platform.
+Professional — For services requiring specialized expertise, such as tax/accounting/legal/professional work, subject to applicable law and credentials.
+Operations/Admin — Verifies agents, manages services, pricing, tasks, disputes, payouts, content and audit logs.
+6. Agent Verification & Safety
+Agent onboarding should include identity verification, phone verification, address/profile checks, skills/category verification, training, agreement and admin approval.
+* Agent must never claim to be a government official unless they actually are and the representation is legally accurate.
+* No bribery, forged documents, false information or guaranteed government approval.
+* No password or OTP sharing/collection.
+* No unauthorized signature or account access.
+* Every task receives a unique Task ID and every material action is logged.
+* Customer documents are shared only with task-scoped permission and access should expire after the task.
+7. Customer-Facing Modules
+* Authentication & Profile
+* Home / “What do you need done?”
+* Service Search & Categories
+* AI-assisted Task Creation
+* Requirements & Checklist
+* Document Vault
+* Quote & Fee Breakdown
+* Agent Selection / Assignment
+* Task Tracking
+* In-app Chat / Notifications
+* Appointments
+* Payments & Invoices
+* Task History
+* Family Profiles
+* Renewal Reminders
+* Support / Complaints / Disputes
+* Ratings & Reviews
+8. Agent Portal
+* Agent onboarding & verification status
+* Available/assigned tasks
+* Task checklist
+* Customer communication
+* Document requests with permission controls
+* Appointment calendar
+* Proof upload
+* Task status updates
+* Earnings & payout history
+* Ratings and complaints
+* Availability and service-area settings
+9. Admin / Operations Panel
+* Dashboard & KPIs
+* Customers
+* Agents & verification
+* Professionals
+* Service catalogue
+* Requirements & workflow steps
+* Task operations
+* Appointments
+* Documents & access logs
+* Payments, refunds & payouts
+* Complaints & disputes
+* Reviews
+* Notifications
+* CMS / Help content
+* Audit logs
+* Reports
+10. Recommended Web Technology Stack
+LayerRecommendedPurposeBackend / APILaravel (PHP)Core business logic, REST API, authentication, queues, permissionsFrontendReact.js / Next.jsModern responsive customer web app and agent portalAlternative frontendVue.js / NuxtGood fit if the team prefers Vue; integrates well with LaravelAdminLaravel + FilamentFast, maintainable operations/admin panelDatabasePostgreSQL or MySQLUsers, tasks, services, payments, workflow and audit dataCache / QueueRedis + Laravel QueueNotifications, matching, background jobs and scheduled remindersFile StorageS3-compatible storageEncrypted document storage with controlled accessAuthenticationLaravel Sanctum / appropriate OAuth/OIDCSession/API authentication and secure accessNotificationsEmail + SMS + Web PushOTP, task updates, reminders and alertsPaymentsBangladesh-compatible payment gatewayCustomer payments, refunds and payout workflowsDeploymentCloud VPS / AWS / equivalentProduction hosting, backups, monitoring and scaling11. Suggested Architecture
+Browser / Mobile Web ? React/Next.js frontend ? Laravel REST API ? Authentication & RBAC ? Service/Task Engine ? PostgreSQL/MySQL; Redis handles cache/queues; S3-compatible storage handles documents; Payment/SMS/email providers integrate through isolated services.
+For an MVP, a Laravel monolith + React/Next.js frontend is preferable to microservices. Split services only when scale or team structure justifies it.
+12. Core Database Modules
+* users / roles / permissions
+* customer_profiles / family_members
+* agents / agent_verifications / agent_skills / service_areas
+* services / service_categories / service_requirements / service_steps / service_fees
+* tasks / task_status_history / task_assignments
+* documents / document_access_grants / document_access_logs
+* appointments / submissions / collections
+* payments / invoices / refunds / agent_payouts
+* messages / notifications
+* reviews / complaints / disputes
+* audit_logs
+13. Core Task Status Model
+NEW ? REQUIREMENTS_PENDING ? DOCUMENT_REVIEW ? QUOTE_PENDING ? PAYMENT_PENDING ? AGENT_ASSIGNED ? IN_PROGRESS ? WAITING_CUSTOMER / WAITING_AUTHORITY ? APPOINTMENT_SCHEDULED ? SUBMITTED ? FOLLOW_UP ? COMPLETED / CANCELLED / DISPUTED
+14. Pricing & Revenue Model
+Customer-facing pricing should clearly separate government/third-party fees from platform service fees and any agent/physical-assistance charge.
+* Basic information/checklist fee (optional)
+* Application/document assistance fee
+* Physical task/office assistance fee
+* Business task packages
+* Corporate subscription later
+* Diaspora/family administration packages later
+Example invoice: Government/official fee ?500 + Platform service fee ?300 + Physical assistance ?500 = Customer total ?1,300. Actual fees must be based on the applicable service and current official information.
+15. AI Module
+AI should help interpret customer language, identify likely services, generate checklists from a verified service database, explain next steps and route tasks. It should not invent government requirements or independently decide legal eligibility.
+AI flow: User message ? Intent detection ? Service matching ? Verified service data ? Human/operations review when needed ? Customer response.
+16. Security & Trust
+* Encryption in transit and at rest
+* Role-based access control
+* 2FA/OTP where appropriate
+* Document-level permissions
+* Short-lived access grants
+* Audit logs
+* Secure backups
+* Least-privilege architecture
+* Data retention/deletion policy
+* Agent activity monitoring
+* Fraud/dispute workflow
+* Privacy policy and consent records
+17. MVP Recommendation
+Do not launch every service at once. Start with Dhaka and 3 service families that demonstrate the marketplace model: Passport assistance, academic certificate/document correction or collection, and Trade License assistance.
+MVP goal: prove that customers will pay to outsource the task, agents can complete it reliably, and the platform can manage trust, documents, payment and status tracking.
+Suggested MVP sequence: Landing page ? Customer task request ? Admin manually verifies request ? Agent assignment ? Document permission ? Task checklist/status ? Payment ? Proof ? Completion ? Review. Automate only after the manual workflow is proven.
+18. KPIs to Measure
+* Paid tasks
+* Task completion rate
+* Average task value
+* Platform take rate
+* Customer acquisition cost
+* Repeat customer rate
+* Agent acceptance rate
+* Average completion time
+* Cancellation rate
+* Complaint/dispute rate
+* Document-access incidents
+* Customer rating
+19. Product Positioning
+Brand idea: “????? ???? ??????, ????? ?????? verified person-?? ????”
+Short positioning: Life Admin as a Service — a trusted marketplace for getting everyday administrative tasks completed.
+20. Build Roadmap
+PhaseFocusDeliverablesPhase 0Manual validationLanding page, WhatsApp/Messenger, 3–5 vetted agents, 20–50 paid tasksPhase 1MVP Web AppCustomer + Agent + Admin portals, tasks, documents, payments, trackingPhase 2Operational automationAgent matching, reminders, service templates, analyticsPhase 3ScaleMore services, more cities, professional network, corporate accountsPhase 4Platform expansionMobile apps, family accounts, diaspora services, deeper integrations where authorized21. Final Product Definition
+This startup is not primarily a government-information portal. It is a trusted task-completion marketplace. The customer describes a real-world administrative task, the platform structures the job, verifies and assigns a suitable human agent, controls document access and payment, tracks execution, records proof, and closes the task.
+The long-term vision is to become a “Life Admin OS” for Bangladesh: one place where individuals, families and businesses can outsource, organize and track repetitive administrative work.
