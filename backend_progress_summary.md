@@ -1,6 +1,6 @@
-# KORBO Backend - Progress Summary (Day 1 & Day 2)
+# KORBO Backend - Progress Summary (Day 1, Day 2 & Day 3)
 
-This document tracks exactly what has been completed, configured, and created in the `ki-korbo-backend` workspace for the first two days of the 30-day development module.
+This document tracks exactly what has been completed, configured, and created in the `ki-korbo-backend` workspace for the 30-day development module.
 
 ---
 
@@ -65,3 +65,39 @@ This document tracks exactly what has been completed, configured, and created in
 *   `/app/Models/Service.php`
 *   `/app/Models/Task.php`
 *   `/app/Models/Document.php`
+
+---
+
+## 🔐 Day 3: Authentication Backend
+
+**Objective:** Implement production-ready Authentication REST API with Laravel Sanctum, dual email/phone support, password & OTP authentication, user roles, account status, and automated testing.
+
+### What was done:
+1. **User Migration & Schema Enhancements:**
+   * Added `phone` (unique), `role` (enum default `CUSTOMER`), `status` (enum default `ACTIVE`), and `phone_verified_at` to the `users` table (`2026_10_08_000001_add_phone_role_status_to_users_table.php`).
+   * Configured `email` and `password` as nullable to seamlessly accommodate phone/OTP-only user signups typical in Bangladesh.
+2. **User Model Enhancements (`App\Models\User`):**
+   * Integrated `Laravel\Sanctum\HasApiTokens` and `Spatie\Permission\Traits\HasRoles`.
+   * Configured `$fillable`, casting, and `customerProfile` & `agent` Eloquent relationships.
+3. **Enums Created:**
+   * `/app/Enums/UserRole.php` (`CUSTOMER`, `AGENT`, `PROFESSIONAL`, `OPERATIONS`, `ADMIN`, `SUPER_ADMIN`).
+   * `/app/Enums/AccountStatus.php` (`ACTIVE`, `INACTIVE`, `PENDING`, `SUSPENDED`).
+4. **Form Requests Created:**
+   * `/app/Http/Requests/RegisterRequest.php`: Validates name, unique email or phone, password, and role.
+   * `/app/Http/Requests/LoginRequest.php`: Supports password login (via email or phone) and OTP-trigger login.
+   * `/app/Http/Requests/VerifyOtpRequest.php`: Validates 6-digit OTP and identifier.
+5. **API Resources Created:**
+   * `/app/Http/Resources/UserResource.php`: Standardized user payload with Spatie roles, permissions, and profile links.
+   * `/app/Http/Resources/AuthResource.php`: Wraps user data with bearer tokens and status messages.
+6. **Auth Service (`App\Services\AuthService`):**
+   * Encapsulates registration logic, Spatie role sync, password hashing, token generation, 6-digit OTP generation with 5-minute cache expiry in Redis/Cache, OTP verification, and token revocation upon logout.
+7. **Auth Controller (`App\Http\Controllers\Api\V1\AuthController`):**
+   * Exposes clean REST API endpoints returning structured JSON responses.
+8. **Routes Configured (`routes/api.php`):**
+   * `POST /api/v1/auth/register`
+   * `POST /api/v1/auth/login` (supports standard password and `via_otp: true`)
+   * `POST /api/v1/auth/otp/verify` (alias `/api/v1/auth/verify-otp`)
+   * `POST /api/v1/auth/logout` (protected with `auth:sanctum`)
+   * `GET  /api/v1/auth/me` & `GET /api/v1/me` (protected with `auth:sanctum`)
+9. **Automated Feature Tests (`tests/Feature/AuthTest.php`):**
+   * 4 test suites with 31 assertions covering registration, password login, OTP request & verification, `/me` profile retrieval, and logout token revocation. All tests passing 100%.
