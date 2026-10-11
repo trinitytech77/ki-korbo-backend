@@ -45,11 +45,16 @@ class AuthService
         $role = Role::firstOrCreate(['name' => $roleName, 'guard_name' => 'web']);
         $user->assignRole($role);
 
-        // Auto-create Customer Profile if role is customer
+        // Auto-create Profile based on role
         if ($roleName === UserRole::CUSTOMER->value) {
             CustomerProfile::firstOrCreate(
                 ['user_id' => $user->id],
                 ['phone' => $user->phone]
+            );
+        } elseif ($roleName === UserRole::AGENT->value) {
+            \App\Models\Agent::firstOrCreate(
+                ['user_id' => $user->id],
+                ['status' => 'PENDING']
             );
         }
 

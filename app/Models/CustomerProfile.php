@@ -3,12 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CustomerProfile extends Model
 {
-    protected $fillable = ['user_id', 'phone', 'address', 'date_of_birth'];
+    protected $fillable = [
+        'user_id',
+        'phone',
+        'address',
+        'date_of_birth',
+        'gender',
+        'emergency_contact',
+    ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

@@ -178,6 +178,7 @@ Fetches profile info, customer details, agent details, and roles/permissions for
 
 * **Endpoints:** 
   * `GET /api/v1/me`
+  * `GET /api/v1/profile`
   * `GET /api/v1/auth/me`
 * **Auth Required:** **Yes** (`Authorization: Bearer <token>`)
 
@@ -190,18 +191,22 @@ Fetches profile info, customer details, agent details, and roles/permissions for
     "name": "Meher Negar",
     "email": "mehernegar28@gmail.com",
     "phone": "01845353922",
+    "avatar": "https://korbo.com/storage/avatars/avatar1.jpg",
+    "language": "en",
     "role": "CUSTOMER",
     "status": "ACTIVE",
     "email_verified": true,
     "phone_verified": false,
     "roles": ["CUSTOMER"],
-    "permissions": [],
+    "permissions": ["tasks.view_own", "tasks.create", "..."],
     "customer_profile": {
       "id": 1,
       "user_id": 1,
-      "phone": null,
-      "address": null,
-      "date_of_birth": null
+      "phone": "01845353922",
+      "address": "Dhanmondi, Dhaka",
+      "date_of_birth": "1995-05-15",
+      "gender": "female",
+      "emergency_contact": "01711111111"
     },
     "agent_profile": null,
     "created_at": "2026-10-08T10:42:10+00:00",
@@ -212,7 +217,74 @@ Fetches profile info, customer details, agent details, and roles/permissions for
 
 ---
 
-## 6. Logout
+## 6. Update User Profile (`PUT /api/v1/profile`)
+Updates personal details, profile picture, address, language, or password.
+
+* **Endpoints:** 
+  * `PUT /api/v1/profile`
+  * `PUT /api/v1/me`
+* **Auth Required:** **Yes** (`Authorization: Bearer <token>`)
+* **Content-Type:** `application/json` or `multipart/form-data` (when uploading avatar file)
+
+### Request Body (JSON or FormData):
+```json
+{
+  "name": "Meher Negar",
+  "language": "bn",
+  "address": "Banani, Dhaka",
+  "date_of_birth": "1995-05-15",
+  "gender": "female",
+  "emergency_contact": "01711223344",
+  "avatar": "https://example.com/avatar.jpg"
+}
+```
+*(Or upload an image file under key `avatar`)*
+
+#### Optional Password Change fields:
+```json
+{
+  "current_password": "current_password123",
+  "password": "new_secure_password",
+  "password_confirmation": "new_secure_password"
+}
+```
+
+#### Agent Profile Specific fields:
+```json
+{
+  "bio": "Experienced legal and passport consultant.",
+  "nid_number": "1994123456789",
+  "service_area": "Dhaka North"
+}
+```
+
+### Success Response (`200 OK`):
+```json
+{
+  "success": true,
+  "message": "Profile updated successfully.",
+  "data": {
+    "id": 1,
+    "name": "Meher Negar",
+    "email": "mehernegar28@gmail.com",
+    "phone": "01845353922",
+    "avatar": "https://example.com/avatar.jpg",
+    "language": "bn",
+    "role": "CUSTOMER",
+    "status": "ACTIVE",
+    "customer_profile": {
+      "address": "Banani, Dhaka",
+      "date_of_birth": "1995-05-15",
+      "gender": "female",
+      "emergency_contact": "01711223344"
+    }
+  }
+}
+```
+
+---
+
+## 7. Logout
 Revokes the current access token. Subsequent requests with this token will return `401 Unauthorized`.
 
 * **Endpoint:** `POST /api/v1/auth/logout`
@@ -225,6 +297,205 @@ Revokes the current access token. Subsequent requests with this token will retur
   "message": "Successfully logged out."
 }
 ```
+
+---
+
+## 8. Service Engine APIs (Day 6)
+
+The Service Engine provides dynamic, database-driven services. Nothing is hardcoded; categories, required documents, execution steps, and fee breakdowns are loaded on-the-fly.
+
+### 8.1 List Services (`GET /api/v1/services`)
+Browse the marketplace catalogue. Supports filtering by category and search.
+
+* **Endpoint:** `GET /api/v1/services`
+* **Auth Required:** No (Public)
+* **Query Parameters:**
+  * `category`: Filter by category slug (e.g. `passport-travel-documents`) or ID.
+  * `search` or `q`: Search keywords (e.g. `renewal` or `police`).
+  * `with_details`: `true` to embed full requirements & steps.
+  * `per_page`: Number of results (default: 25).
+
+#### Success Response (`200 OK`):
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Passport Renewal",
+      "slug": "passport-renewal",
+      "description": "Fast-track e-passport renewal support.",
+      "estimated_days": "7-10 working days",
+      "is_active": true,
+      "category": {
+        "id": 1,
+        "name": "Passport & Travel Documents",
+        "slug": "passport-travel-documents",
+        "icon": "passport"
+      },
+      "fee_breakdown": {
+        "government_fee": 4025,
+        "korbo_fee": 500,
+        "agent_fee": 800,
+        "total_amount": 5325
+      }
+    }
+  ]
+}
+```
+
+---
+
+### 8.2 Get Service Details (`GET /api/v1/services/{id_or_slug}`)
+Fetches the complete service breakdown: required checklist documents, ordered execution steps, and transparent fee breakdown.
+
+* **Endpoint:** `GET /api/v1/services/{id_or_slug}` (accepts numeric ID or string slug like `passport-renewal`)
+* **Auth Required:** No (Public)
+
+#### Success Response (`200 OK`):
+```json
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "name": "Passport Renewal",
+    "slug": "passport-renewal",
+    "description": "Fast-track e-passport renewal support. Includes document audit, online form assistance, appointment slot coordination, and collection escort.",
+    "estimated_days": "7-10 working days",
+    "is_active": true,
+    "category": {
+      "id": 1,
+      "name": "Passport & Travel Documents",
+      "slug": "passport-travel-documents",
+      "icon": "passport"
+    },
+    "requirements": [
+      {
+        "id": 1,
+        "document_name": "National ID Card (NID)",
+        "is_mandatory": true
+      },
+      {
+        "id": 2,
+        "document_name": "Existing Passport Copy",
+        "is_mandatory": true
+      },
+      {
+        "id": 3,
+        "document_name": "Recent Lab-Print Photograph (35x45mm)",
+        "is_mandatory": true
+      }
+    ],
+    "steps": [
+      {
+        "id": 1,
+        "step_name": "Document Verification & Audit",
+        "step_order": 1
+      },
+      {
+        "id": 2,
+        "step_name": "Online Application & Challan Generation",
+        "step_order": 2
+      },
+      {
+        "id": 3,
+        "step_name": "Biometric Appointment Coordination",
+        "step_order": 3
+      },
+      {
+        "id": 4,
+        "step_name": "Regional Passport Office (RPO) Physical Escort",
+        "step_order": 4
+      },
+      {
+        "id": 5,
+        "step_name": "Collection & Secure Home Delivery",
+        "step_order": 5
+      }
+    ],
+    "fees": [
+      {
+        "id": 1,
+        "fee_type": "GOVERNMENT",
+        "amount": 4025
+      },
+      {
+        "id": 2,
+        "fee_type": "KORBO",
+        "amount": 500
+      },
+      {
+        "id": 3,
+        "fee_type": "AGENT",
+        "amount": 800
+      }
+    ],
+    "fee_breakdown": {
+      "government_fee": 4025,
+      "korbo_fee": 500,
+      "agent_fee": 800,
+      "total_amount": 5325
+    }
+  }
+}
+```
+
+---
+
+### 8.3 List Service Categories (`GET /api/v1/service-categories`)
+Lists all active categories with counts or nested active services.
+
+* **Endpoint:** `GET /api/v1/service-categories`
+* **Query Parameters:** `with_services=true` (to embed active services inside each category)
+* **Auth Required:** No (Public)
+
+---
+
+### 8.4 Admin: Create Database-Driven Service (`POST /api/v1/services`)
+Allows platform administrators or operations to create a new service with all its requirements, workflow steps, and fees without touching code.
+
+* **Endpoint:** `POST /api/v1/services`
+* **Auth Required:** **Yes** (Role: `ADMIN`, `SUPER_ADMIN`, or `OPERATIONS`)
+
+#### Request Body:
+```json
+{
+  "service_category_id": 1,
+  "name": "Police Clearance Certificate",
+  "slug": "police-clearance-certificate",
+  "description": "Official police verification assistance.",
+  "estimated_days": "5-7 working days",
+  "is_active": true,
+  "requirements": [
+    { "document_name": "Valid Passport", "is_mandatory": true },
+    { "document_name": "National ID Card", "is_mandatory": true }
+  ],
+  "steps": [
+    { "step_name": "Online Police Clearance Filing", "step_order": 1 },
+    { "step_name": "Local Thana Liaison & Verification", "step_order": 2 },
+    { "step_name": "Delivery of Sealed Certificate", "step_order": 3 }
+  ],
+  "fees": [
+    { "fee_type": "GOVERNMENT", "amount": 500.00 },
+    { "fee_type": "KORBO", "amount": 500.00 },
+    { "fee_type": "AGENT", "amount": 800.00 }
+  ]
+}
+```
+
+---
+
+### 8.5 Admin: Update Service (`PUT /api/v1/services/{id}`)
+Updates service metadata and synchronizes requirements, steps, and fees.
+
+* **Endpoint:** `PUT /api/v1/services/{id}`
+* **Auth Required:** **Yes** (Role: `ADMIN`, `SUPER_ADMIN`, or `OPERATIONS`)
+
+---
+
+### 8.6 Admin: Delete Service (`DELETE /api/v1/services/{id}`)
+* **Endpoint:** `DELETE /api/v1/services/{id}`
+* **Auth Required:** **Yes** (Role: `ADMIN` or `SUPER_ADMIN`)
 
 ---
 

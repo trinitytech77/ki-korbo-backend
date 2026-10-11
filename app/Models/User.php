@@ -3,8 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,6 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'avatar',
+        'language',
         'password',
         'role',
         'status',
@@ -56,6 +60,44 @@ class User extends Authenticatable
     }
 
     /**
+     * Role checking helpers
+     */
+    public function isCustomer(): bool
+    {
+        return $this->role === UserRole::CUSTOMER->value || $this->hasRole(UserRole::CUSTOMER->value);
+    }
+
+    public function isAgent(): bool
+    {
+        return $this->role === UserRole::AGENT->value || $this->hasRole(UserRole::AGENT->value);
+    }
+
+    public function isProfessional(): bool
+    {
+        return $this->role === UserRole::PROFESSIONAL->value || $this->hasRole(UserRole::PROFESSIONAL->value);
+    }
+
+    public function isOperations(): bool
+    {
+        return $this->role === UserRole::OPERATIONS->value || $this->hasRole(UserRole::OPERATIONS->value);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === UserRole::ADMIN->value || $this->hasRole(UserRole::ADMIN->value);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === UserRole::SUPER_ADMIN->value || $this->hasRole(UserRole::SUPER_ADMIN->value);
+    }
+
+    public function isStaff(): bool
+    {
+        return $this->isAdmin() || $this->isSuperAdmin() || $this->isOperations();
+    }
+
+    /**
      * Relationship to customer profile.
      */
     public function customerProfile(): HasOne
@@ -69,5 +111,53 @@ class User extends Authenticatable
     public function agent(): HasOne
     {
         return $this->hasOne(Agent::class);
+    }
+
+    /**
+     * Tasks created by this customer.
+     */
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'user_id');
+    }
+
+    /**
+     * Tasks assigned to this agent.
+     */
+    public function assignedTasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'agent_id');
+    }
+
+    /**
+     * Documents uploaded by this user.
+     */
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class, 'user_id');
+    }
+
+    /**
+     * Payments made by this user.
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class, 'user_id');
+    }
+
+    /**
+     * Reviews written by this customer.
+     */
+    public function reviewsGiven(): HasMany
+    {
+        return $this->hasMany(Review::class, 'user_id');
+    }
+
+    /**
+     * Reviews received by this agent.
+     */
+    public function reviewsReceived(): HasMany
+    {
+        return $this->hasMany(Review::class, 'agent_id');
     }
 }

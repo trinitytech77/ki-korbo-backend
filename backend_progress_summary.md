@@ -101,3 +101,91 @@ This document tracks exactly what has been completed, configured, and created in
    * `GET  /api/v1/auth/me` & `GET /api/v1/me` (protected with `auth:sanctum`)
 9. **Automated Feature Tests (`tests/Feature/AuthTest.php`):**
    * 4 test suites with 31 assertions covering registration, password login, OTP request & verification, `/me` profile retrieval, and logout token revocation. All tests passing 100%.
+
+---
+
+## 🛡️ Day 5: RBAC + User Profiles Backend
+
+**Objective:** Implement comprehensive Role-Based Access Control (RBAC), multi-role Spatie permissions, policy-based authorization across domain models, and complete User Profile management APIs.
+
+### What was done:
+1. **Roles Implemented (6 Total):**
+   * `CUSTOMER`: Standard clients managing own tasks, personal documents, payments, and agent reviews.
+   * `AGENT`: Field agents handling assigned tasks, task documents/grants, proofs, agent profile, and payout reviews.
+   * `PROFESSIONAL`: Certified experts handling assigned compliance tasks and documents.
+   * `OPERATIONS`: Operational staff managing task flow, agent dispatch, document verification, and disputes.
+   * `ADMIN`: Administrators with complete operational access across all platform modules.
+   * `SUPER_ADMIN`: Root access to all policies and system capabilities (bypasses gates via `before`).
+2. **Role & Permission Seeder (`database/seeders/RolePermissionSeeder.php`):**
+   * Created and mapped granular permissions (`tasks.*`, `documents.*`, `agents.*`, `payments.*`, `reviews.*`, `profiles.*`) to all 6 roles.
+   * Integrated into `DatabaseSeeder.php`.
+3. **Database Schema Enhancements:**
+   * Added `avatar` and `language` to `users` table (`2026_10_11_000001_add_profile_fields_to_users_and_profiles.php`).
+   * Added `gender` and `emergency_contact` to `customer_profiles` table.
+   * Added `nid_number` and `service_area` to `agents` table.
+4. **Domain Models Created & Enhanced:**
+   * `/app/Models/Payment.php`: Payment model with user and task relationships.
+   * `/app/Models/Review.php`: Review model with customer, agent, and task relationships.
+   * `/app/Models/TaskAssignment.php`: Assignment history model.
+   * `/app/Models/DocumentAccessGrant.php`: Task-scoped document access grants with expiry verification.
+   * `/app/Models/User.php`: Added role helper methods (`isCustomer()`, `isAgent()`, `isAdmin()`, `isSuperAdmin()`, `isStaff()`, etc.) and profile relationships.
+   * `/app/Models/Task.php`: Added `isAssignedTo()` helper and relationships to payments, reviews, assignments, and documents.
+   * `/app/Models/Document.php`: Added `hasActiveGrantFor()` helper and relationships.
+5. **Laravel Policies Created & Registered (`AppServiceProvider`):**
+   * `/app/Policies/TaskPolicy.php`: Enforces Customer (own tasks only), Agent (assigned tasks only), Admin/Ops (operational access), Super Admin (everything).
+   * `/app/Policies/DocumentPolicy.php`: Protects documents, supports task-based agent access and explicit unexpired grants, restricts document verification to staff.
+   * `/app/Policies/AgentPolicy.php`: Protects agent profiles, allows self-updates by agents, restricts verification/approval to staff.
+   * `/app/Policies/PaymentPolicy.php`: Customer views own payments, Agent views assigned task payments, Admin processes refunds.
+   * `/app/Policies/ReviewPolicy.php`: Customers review agents for completed tasks, author/admin moderation.
+6. **Profile Action & Endpoints:**
+   * `/app/Actions/UpdateUserProfileAction.php`: Encapsulates updating personal info, avatar file upload/URL, password change with optional current password verification, customer profile details, and agent profile details.
+   * `/app/Http/Requests/UpdateProfileRequest.php`: Form request validation for profile changes.
+   * `/app/Http/Controllers/Api/V1/ProfileController.php`: Exposes `show` and `update` actions.
+   * `/routes/api.php`:
+     * `GET /api/v1/me` & `GET /api/v1/profile`
+     * `PUT /api/v1/profile` & `PUT /api/v1/me`
+7. **Automated Feature Tests:**
+   * `tests/Feature/PolicyTest.php`: Tests authorization across all 5 policies for each role.
+   * `tests/Feature/ProfileTest.php`: Tests profile fetch, profile updates, avatar uploads, password changes, agent field updates, and unauthorized rejection.
+   * **Result:** All 18 tests passing with 111 assertions!
+
+---
+
+## ⚙️ Day 6: Service Engine (Crucial)
+
+**Objective:** Build dynamic, database-driven service CRUD APIs allowing the frontend to dynamically load services, requirements, workflows, and fee breakdowns without hardcoded values in controllers.
+
+### What was done:
+1. **Dynamic Database Models Created & Enhanced:**
+   * `/app/Models/ServiceCategory.php`: Category model with `services` and `activeServices` relationships, slug/id route binding.
+   * `/app/Models/Service.php`: Core service model with `category`, `requirements`, `steps`, `fees`, `tasks` relations, and dynamic fee calculation accessors (`government_fee`, `korbo_fee`, `agent_fee`, `total_fee`, `fee_breakdown`).
+   * `/app/Models/ServiceRequirement.php`: Document requirement model (`document_name`, `is_mandatory`).
+   * `/app/Models/ServiceStep.php`: Execution step model with ordering (`step_name`, `step_order`).
+   * `/app/Models/ServiceFee.php`: Dynamic fee breakdown model (`fee_type`: GOVERNMENT, KORBO, AGENT, `amount`).
+2. **Atomic Actions Created:**
+   * `/app/Actions/CreateServiceAction.php`: Atomically creates a service along with its requirements, steps, and fees in a single database transaction.
+   * `/app/Actions/UpdateServiceAction.php`: Atomically updates service metadata and synchronizes child requirements, steps, and fee structures.
+3. **Policies & Authorization (`ServicePolicy`, `ServiceCategoryPolicy`):**
+   * Public users and customers can view all active services, categories, steps, requirements, and fee quotes.
+   * Only staff (`ADMIN`, `SUPER_ADMIN`, `OPERATIONS`) can create, update, or delete services.
+   * Registered in `AppServiceProvider`.
+4. **Form Requests & Validation:**
+   * `/app/Http/Requests/StoreServiceRequest.php`: Validates service data and nested requirements, steps, and fees arrays.
+   * `/app/Http/Requests/UpdateServiceRequest.php`: Validates update payloads and unique slugs.
+   * `/app/Http/Requests/StoreServiceCategoryRequest.php` & `UpdateServiceCategoryRequest.php`.
+5. **API Resources Created:**
+   * `/app/Http/Resources/ServiceResource.php`: Returns standardized service JSON with embedded requirements, steps, fees, and fee breakdown calculations.
+   * `/app/Http/Resources/ServiceCategoryResource.php`, `ServiceRequirementResource.php`, `ServiceStepResource.php`, `ServiceFeeResource.php`.
+6. **Controllers & Endpoints (`routes/api.php`):**
+   * `GET /api/v1/services` (List all active services, category filter, keyword search)
+   * `GET /api/v1/services/{id_or_slug}` (Get complete service with requirements, steps, fees)
+   * `GET /api/v1/service-categories` & `GET /api/v1/service-categories/{id_or_slug}`
+   * `POST /api/v1/services` (Admin create dynamic service)
+   * `PUT /api/v1/services/{id}` (Admin update service & sync relations)
+   * `DELETE /api/v1/services/{id}` (Admin delete service)
+   * `POST|PUT|DELETE /api/v1/service-categories` (Admin category CRUD)
+7. **Database Seeder (`ServiceEngineSeeder.php`):**
+   * Pre-populates real database-driven services (Passport Renewal, New E-Passport, Digital Birth Certificate Correction, Trade License Issuance & Renewal) with authentic Bangladesh government fees, platform fees, agent fees, document requirements, and ordered workflow steps.
+8. **Automated Feature Tests (`tests/Feature/ServiceEngineTest.php`):**
+   * 8 comprehensive test suites covering service listing, filtering, search, slug/id detail retrieval with fee breakdown, admin creation, updates with relationship syncing, deletions, and RBAC security enforcement.
+   * **Total Suite:** 26 passed tests, 298 assertions across the entire backend!
