@@ -16,6 +16,8 @@ class Agent extends Model
         'bio',
         'nid_number',
         'service_area',
+        'address',
+        'experience_years',
     ];
 
     public function user(): BelongsTo

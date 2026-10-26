@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::firstOrCreate(
+        $user = User::updateOrCreate(
             ['email' => 'admin@korbo.com'],
             [
                 'name' => 'Admin User',
@@ -20,5 +20,14 @@ class UserSeeder extends Seeder
                 'status' => 'ACTIVE',
             ]
         );
+
+        $role = \Spatie\Permission\Models\Role::firstOrCreate([
+            'name' => UserRole::ADMIN->value,
+            'guard_name' => 'web',
+        ]);
+
+        if (!$user->hasRole(UserRole::ADMIN->value)) {
+            $user->assignRole($role);
+        }
     }
 }

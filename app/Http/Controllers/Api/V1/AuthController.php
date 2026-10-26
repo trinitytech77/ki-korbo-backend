@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Actions\RegisterAgentAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AgentRegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\VerifyOtpRequest;
@@ -15,14 +17,12 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function __construct(
-        protected AuthService $authService
+        protected AuthService         $authService,
+        protected RegisterAgentAction $registerAgentAction,
     ) {}
 
     /**
      * Register a new user.
-     *
-     * @param RegisterRequest $request
-     * @return JsonResponse
      */
     public function register(RegisterRequest $request): JsonResponse
     {
@@ -32,6 +32,37 @@ class AuthController extends Controller
             new AuthResource($result['user'], $result['token'], 'Registration successful.'),
             201
         );
+    }
+
+    /**
+     * "Join as Agent" — registers user automatically with AGENT role.
+     * Used from the home page "Join as Agent" module.
+     *
+     * POST /api/v1/auth/register/agent
+     */
+    public function registerAgent(AgentRegisterRequest $request): JsonResponse
+    {
+        $result = $this->registerAgentAction->execute($request->validated());
+
+        return response()->json([
+            'success' => true,
+            'message' => 'এজেন্ট হিসেবে নিবন্ধন সফল হয়েছে! আপনার আবেদন পর্যালোচনাধীন আছে।',
+            'token'   => $result['token'],
+            'user'    => [
+                'id'     => $result['user']->id,
+                'name'   => $result['user']->name,
+                'email'  => $result['user']->email,
+                'phone'  => $result['user']->phone,
+                'role'   => $result['user']->role,
+                'status' => $result['user']->status,
+                'agent'  => [
+                    'id'               => $result['user']->agent?->id,
+                    'status'           => $result['user']->agent?->status, // PENDING
+                    'nid_number'       => $result['user']->agent?->nid_number,
+                    'experience_years' => $result['user']->agent?->experience_years,
+                ],
+            ],
+        ], 201);
     }
 
     /**
